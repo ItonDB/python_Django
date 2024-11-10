@@ -1,0 +1,2 @@
+การเข้าถึง Floder cd (ชื่อ Floder)
+การ runserver ต้องเข้าถึง Floder ของโปรเจคก่อน = python manage.py runserver
