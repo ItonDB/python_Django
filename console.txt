@@ -1,2 +1,5 @@
-การเข้าถึง Floder cd (ชื่อ Floder)
+การเข้าถึง Floder = cd (ชื่อ Floder)
 การ runserver ต้องเข้าถึง Floder ของโปรเจคก่อน = python manage.py runserver
+แปลง class model ให้เป็นโครงสร้างตารางในฐานข้อมูล = python manage.py makemigrations
+อัพตารางฐานข้อมูล = python manage.py migrate
+สร้างผู้ดูแลระบบ ทำหน้าที่จัดการโมเดลนฐานข้อมูล = python manage.py createsuprtuser

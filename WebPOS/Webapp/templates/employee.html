@@ -1,10 +1,39 @@
 {% extends "base.html" %}
 <!-- title -->
 {% block title %}
-    <title>พนักงาน</title>
+    <title>Employee</title>
 {% endblock %}
 
 <!-- content -->
 {% block content %}
+้<h1 class="text-center">รายชื่อพนักงาน</h1>
+    <table class="table table-dark table-hover">
+        <thead>
+          <tr>
+            <th scope="col">รหัสพนักงาน</th>
+            <th scope="col">ชื่อ</th>
+            <th scope="col">นามสกุล</th>
+            <th scope="col">สถานะ</th>
+            <th scope="col">เงินเดือน</th>
+            <th scope="col">ที่อยู่</th>
+            <th scope="col">วันที่เริ่มงาน</th>           
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for Employee in all_Employee %}
+            <tr>
+                <th scope="row">{{Employee.id}}</th>
+                <td>{{Employee.fname}}</td>
+                <td>{{Employee.lname}}</td>
+                <td>{{Employee.status}}</td>
+                <td>{{Employee.income}}</td>
+                <td>{{Employee.address}}</td>
+                <td>{{Employee.date}}</td>
+
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
 
 {% endblock %}

@@ -1,10 +1,99 @@
 {% extends "base.html" %}
 <!-- title -->
 {% block title %}
-    <title>บันทึกข้อมูล</title>
+    <title>Data</title>
 {% endblock %}
 
 <!-- content -->
 {% block content %}
+<h1 class="text-center">Product</h1>
+{% if message %}
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="successModalLabel">แจ้งเตือน</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ message }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<script>
+    // แสดง Modal เมื่อโหลดหน้าเว็บ
+    document.addEventListener('DOMContentLoaded', function() {
+        var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+    });
+</script>
+{% endif %}
+
+<form action="" method="post" >
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="categorySelect" class="form-label">ประเภทสินค้า</label>
+        <select class="form-select form-select-sm" name="categories" id="categories" aria-label=".form-select-sm example">
+            <option value="">เลือกประเภทสินค้า</option>
+            {% for category in all_categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">ชื่อสินค้า</label>
+        <input type="text" class="form-control" name="name" id="name" placeholder="กรอกชื่อสินค้า" required>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">รายละเอียด</label>
+        <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">ราคา</label>
+        <input type="number" class="form-control" name="price" id="price" placeholder="กรอกราคา" required>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">จำนวน</label>
+        <input type="number" class="form-control" name="stock" id="stock" placeholder="กรอกชื่อสินค้า" required>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-success">ยืนยัน</button>
+        <button type="reset" class="btn btn-danger">ยกเลิก</button>
+      </div>
+</form>
+<hr>
+<h4 class="text-center">Product list</h4>
+    <table class="table table-dark table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ชื่อประเภทสินค้า</th>
+            <th scope="col">ชื่อสินค้า</th>
+            <th scope="col">รายละเอียดสินค้า</th>
+            <th scope="col">ราคา</th>
+            <th scope="col">จำนวน</th>
+            <th scope="col">แก้ไข</th>
+            <th scope="col">ลบ</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for Product in all_Product %}
+            <tr>
+                <th scope="row">{{Product.categories.name}}</th>
+                <td>{{Product.name}}</td>
+                <td>{{Product.description}}</td>
+                <td>{{Product.price}}</td>
+                <td>{{Product.stock}}</td>
+                <td><button class="btn btn-warning">แก้ไข</button></td>
+                <td><button class="btn btn-danger">ลบ</button></td>
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
 {% endblock %}
