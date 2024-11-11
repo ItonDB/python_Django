@@ -7,4 +7,19 @@
 <!-- content -->
 {% block content %}
 
+{% for product in all_Product %}
+<div class="card" style="width: 18rem;">
+    {% if product.image %}
+    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p>ราคา: {{ product.price }} บาท</p>
+        <p>จำนวน: {{ product.stock }} ชิ้น</p>
+    </div>
+</div>
+
+{% endfor %}
+
 {% endblock %}

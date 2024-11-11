@@ -8,7 +8,13 @@ def index(request):
     return render(request,"index.html")#ส่งไฟล์ index.html ใน floder templates กลับไป
 
 def product(request):
-    return render(request,"product.html")
+    all_Product = Product.objects.all()
+    all_categories = categories.objects.all()
+    context = {
+        "all_Product": all_Product,
+        "all_categories": all_categories,
+    }
+    return render(request,"product.html",context)
 
 def data(request):
     all_Product = Product.objects.all()
@@ -27,6 +33,7 @@ def data(request):
         pdescription = request.POST.get("description")
         pprice = request.POST.get("price")
         pstock = request.POST.get("stock")
+        pimage = request.FILES.get("image")
 
         # ตรวจสอบว่าข้อมูลครบถ้วนก่อนบันทึก
         if category_id and pname and pprice and pstock:
@@ -44,10 +51,10 @@ def data(request):
                 name=pname,
                 description=pdescription,
                 price=pprice,
-                stock=pstock
+                stock=pstock,
+                image=pimage
             )
             newProduct.save()
-            # messages.success(request,"บันทึกข้อมูลเรียบร้อย")
             context["message"] = "เพิ่มสินค้าสำเร็จ!"
         
             # อัปเดตข้อมูลหลังจากเพิ่มสินค้าใหม่
