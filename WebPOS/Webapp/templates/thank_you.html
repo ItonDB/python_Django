@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container text-center">
+    <h2>ขอบคุณสำหรับการชำระเงิน!</h2>
+    <p>คำสั่งซื้อของคุณสำเร็จเรียบร้อยแล้ว</p>
+    <a href="{% url 'Webapp:download_receipt' payment_id=payment.id %}" class="btn btn-primary">
+        ออกใบเสร็จ
+    </a>
+    
+</div>
+{% endblock %}

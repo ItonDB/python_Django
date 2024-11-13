@@ -61,11 +61,14 @@
                 <span class="nav-tooltip">Employee</span>
               </li>
             <li class="nav-item">
-              <a href="/report" class="nav-link">
-                <span class="nav-icon material-symbols-rounded">star</span>
-                <span class="nav-label">Payslip</span>
+              <a href="{% url 'Webapp:cart_list' %}" class="nav-link">
+                <span class="nav-icon material-symbols-rounded">shopping_cart</span>
+                <span class="nav-label">Cart</span>
+                {% if request.session.cart_qty %}
+                <span class="nav-label" style="color: yellow;">{{ request.session.cart_qty }}</span>
+                {% endif %}
               </a>
-              <span class="nav-tooltip">Payslip</span>
+              <span class="nav-tooltip">Cart</span>
             </li>
             <li class="nav-item">
               <a href="/setting" class="nav-link">
@@ -77,23 +80,57 @@
           </ul>
           <!-- Secondary bottom nav -->
           <ul class="nav-list secondary-nav">
+      
+              {% if user.is_authenticated %}
             <li class="nav-item">
-              <a href="/profile" class="nav-link">
-                <span class="nav-icon material-symbols-rounded">account_circle</span>
-                <span class="nav-label">Profile</span>
-              </a>
-              <span class="nav-tooltip">Profile</span>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <span class="nav-icon material-symbols-rounded">logout</span>
-                <span class="nav-label">Logout</span>
-              </a>
-              <span class="nav-tooltip">Logout</span>
-            </li>
+                <a class="nav-link">
+                  <span class="nav-label">{{ user.username }}</span>
+                </a>
+              </li>
+
+                  <form action="{% url 'Webapp:logout' %}" method="post" novalidate>
+                      {% csrf_token %}
+                      <a href="javascript:void(0)" onclick="this.closest('form').submit();" class="nav-link">
+                          <span class="nav-icon material-symbols-rounded">logout</span>
+                          <span class="nav-label">Logout</span>
+                      </a>
+                  </form>
+                  <span class="nav-tooltip">Logout</span>
+              {% endif %}
+          </li>
           </ul>
         </nav>
       </aside>
+
+      <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to log out?
+                </div>
+                <div class="modal-footer">
+                    <form action="{% url 'Webapp:logout' %}" method="post" novalidate>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Yes, Logout</button>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript to handle Logout confirmation -->
+    <script>
+        function showLogoutConfirmation() {
+            // Show the confirmation modal
+            const logoutModal = new bootstrap.Modal(document.getElementById('logoutModal'));
+            logoutModal.show();
+        }
+    </script>
 
     <div class="container">
         {% block content %}

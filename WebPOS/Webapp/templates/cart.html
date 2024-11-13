@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+<!-- title -->
+{% block title %}
+    <title>cart</title>
+{% endblock %}
+
+<!-- content -->
+{% block content %}
+        <h1 class="text-center">ตะกร้าสินค้า</h1>
+    <table class="table table-success table-hover">
+        <thead>
+            <tr>
+                <th>ชื่อ</th>
+                <th>จำนวน</th>
+                <th>ราคา</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in cart_items %}
+            <tr>
+                <td>{{ c.name }}</td>
+                <td>{{ c.qty }}</td>
+                <td>{{ c.price }}</td>
+                <td><a href="{% url 'Webapp:cart_delete' id=c.id %}" class="btn btn-danger">ลบ</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <h3 class="text-right">ราคารวม: {{ total_price }} บาท</h3>
+    <div class="text-center">
+        <a href="/product" class="btn btn-primary">เพิ่มรายการ</a>
+        <a href="{% url 'Webapp:checkout' %}" class="btn btn-success">ชำระเงิน</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,92 @@
+body{
+    background-image: url(https://cdn.pixabay.com/photo/2019/07/14/16/27/pen-4337521_1280.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+}
+.form{
+    width: 50%;
+    height: 910px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.item1{
+    padding-top: 15px;
+}
+.bg-form{
+    width: 500px;
+    height: 400px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    
+}
+.form2{
+    background-color: #333;
+    opacity: 0.8;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome{
+    width: 600px;
+    text-align: center;
+}
+
+.welcome h1{
+    color: #fff;
+    font-size: 64px;
+    padding-bottom: 30px;
+}
+.welcome p{
+    color: #fff;
+    font-size: 26px;
+}
+.item1 label{
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+.item1 input{
+    width: 250px;
+    border: none;
+    background-color: #bdbdbd;
+    height: 35px;
+    border-radius: 15px;
+}
+.item1 h1{
+    padding-bottom: 30px;
+}
+        /* Popup modal styles */
+.modal {
+    display: none; /* ซ่อน modal เริ่มต้น */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* พื้นหลังโปร่งแสง */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+    background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+}

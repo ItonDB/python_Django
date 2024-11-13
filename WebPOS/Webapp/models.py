@@ -33,10 +33,11 @@ class Employee(models.Model):
         return f"{self.fname} {self.lname}"
 
 class Order(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    total = models.DecimalField(max_digits=10, decimal_places=2)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)  # สินค้าที่สั่ง
+    quantity = models.IntegerField()  # จำนวนสินค้าที่สั่ง
+    price = models.DecimalField(max_digits=10, decimal_places=2)  # ราคาของสินค้าที่สั่ง
+    total = models.DecimalField(max_digits=10, decimal_places=2)  # ยอดรวมของสินค้าที่สั่ง
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Order #{self.id}"
@@ -54,3 +55,13 @@ class Payment (models.Model):
 
     def __str__(self):
         return f"Payment for Order #{self.order.id}"
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, related_name='order_items', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.product.name} x {self.quantity}"

@@ -88,8 +88,7 @@
             <th scope="col">รายละเอียดสินค้า</th>
             <th scope="col">ราคา</th>
             <th scope="col">จำนวน</th>
-            <th scope="col">แก้ไข</th>
-            <th scope="col">ลบ</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -100,7 +99,6 @@
                 <td>{{Product.description}}</td>
                 <td>{{Product.price}}</td>
                 <td>{{Product.stock}}</td>
-                <td><a href="#" class="btn btn-warning">แก้ไข</a></td>
                 <td><a href="delete/{{Product.id}}" class="btn btn-danger">ลบ</a></td>
               </tr>
             {% endfor %}
