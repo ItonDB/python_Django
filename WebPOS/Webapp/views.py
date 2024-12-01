@@ -286,24 +286,24 @@ def generate_receipt(payment):
     # เพิ่มช่องว่างก่อนเริ่มตารางรายการสินค้า
     table_top -= (len(data) * row_height) + 20
 
-    # ข้อมูลสินค้าในคำสั่งซื้อ (จาก order_items)
-    c.drawString(table_left, table_top, "รายการสินค้า")
-    table_top -= row_height  # ลดตำแหน่งสำหรับแถวถัดไป
+    # # ข้อมูลสินค้าในคำสั่งซื้อ (จาก order_items)
+    # c.drawString(table_left, table_top, "รายการสินค้า")
+    # table_top -= row_height  # ลดตำแหน่งสำหรับแถวถัดไป
 
-    # หัวตารางสินค้า
-    c.drawString(table_left, table_top, "สินค้า")
-    c.drawString(table_left + col_widths[0], table_top, "จำนวน")
-    c.drawString(table_left + col_widths[0] + col_widths[1], table_top, "ราคา")
-    c.drawString(table_left + col_widths[0] + col_widths[1] + col_widths[2], table_top, "ยอดรวม")
-    table_top -= row_height  # ลดตำแหน่งสำหรับแถวถัดไป
+    # # หัวตารางสินค้า
+    # c.drawString(table_left, table_top, "สินค้า")
+    # c.drawString(table_left + col_widths[0], table_top, "จำนวน")
+    # c.drawString(table_left + col_widths[0] + col_widths[1], table_top, "ราคา")
+    # c.drawString(table_left + col_widths[0] + col_widths[1] + col_widths[2], table_top, "ยอดรวม")
+    # table_top -= row_height  # ลดตำแหน่งสำหรับแถวถัดไป
 
-    # ดึงข้อมูลรายการสินค้าจาก order_items
-    for order_item in payment.order.order_items.all():
-        c.drawString(table_left, table_top, order_item.product.name)
-        c.drawString(table_left + col_widths[0], table_top, str(order_item.quantity))
-        c.drawRightString(table_left + col_widths[0] + col_widths[1], table_top, f"{order_item.price} บาท")
-        c.drawRightString(table_left + col_widths[0] + col_widths[1] + col_widths[2], table_top, f"{order_item.total} บาท")
-        table_top -= row_height  # ลดตำแหน่งสำหรับแถวถัดไป
+    # # ดึงข้อมูลรายการสินค้าจาก order_items
+    # for order_item in payment.order.order_items.all():
+    #     c.drawString(table_left, table_top, order_item.product.name)
+    #     c.drawString(table_left + col_widths[0], table_top, str(order_item.quantity))
+    #     c.drawRightString(table_left + col_widths[0] + col_widths[1], table_top, f"{order_item.price} บาท")
+    #     c.drawRightString(table_left + col_widths[0] + col_widths[1] + col_widths[2], table_top, f"{order_item.total} บาท")
+    #     table_top -= row_height  # ลดตำแหน่งสำหรับแถวถัดไป
 
     # บันทึกและปิด PDF
     c.save()
